@@ -1,0 +1,38 @@
+
+{% extends "application.html" %}
+
+{% block content %}
+    <h2>新しい素材を追加</h2>
+    <form method="POST">
+        <label for="name">素材名:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="category">カテゴリー:</label>
+        <input type="text" id="category" name="category" list="categoryList" required>
+        <datalist id="categoryList">
+            {% for category in categories %}
+                <option value="{{ category.category }}">
+            {% endfor %}
+        </datalist>
+        <label for="purchase_price">購入額:</label>
+        <input type="text" id="purchase_price" name="purchase_price" required>
+
+        <label for="quantity">数量:</label>
+        <input type="number" id="quantity" name="quantity" required>
+
+        <label for="unit_price">単価:</label>
+        <input type="text" id="unit_price" name="unit_price" required>
+
+        <label for="supplier">仕入れ先:</label>
+        <input type="text" id="supplier" name="supplier" required>
+
+        <label for="purchase_date">購入日:</label>
+        <input type="date" id="purchase_date" name="purchase_date">
+
+        <label for="supplier_contact_or_notes">備考:</label> <!-- 変更 -->
+        <input type="text" id="supplier_contact_or_notes" name="supplier_contact_or_notes"> <!-- 変更 -->
+
+
+        <button type="submit">追加</button>
+    </form>
+{% endblock %}

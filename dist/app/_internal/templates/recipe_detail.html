@@ -1,0 +1,60 @@
+{% extends "application.html" %}
+
+{% block content %}
+<h2>{{ recipe.name }}の詳細</h2>
+
+<table class="recipe-details">
+    <tr>
+        <th>説明</th>
+        <td>{{ recipe.description }}</td>
+    </tr>
+    <tr>
+        <th>販売価格</th>
+        <td>¥{{ recipe.listing_price }}</td>
+    </tr>
+    <tr>
+        <th>作業料</th>
+        <td>¥{{ recipe.labor_cost }}</td>
+    </tr>
+    <tr>
+        <th>材料の合計金額</th>
+        <td>¥{{ total_material_cost }}</td>
+    </tr>
+    <tr>
+        <th>合計原価</th>
+        <td>¥{{ recipe.total_cost }}</td>
+    </tr>
+    <tr>
+        <th>原価率</th>
+        <td>{{ recipe.profit_margin }}%</td>
+    </tr>
+    <tr>
+        <th>作成日</th>
+        <td>{{ recipe.created_at.strftime('%Y-%m-%d') }}</td>
+    </tr>
+</table>
+
+<h3>使用される材料</h3>
+<table class="material-details">
+    <thead>
+        <tr>
+            <th>材料名</th>
+            <th>数量</th>
+            <th>単価</th>
+            <th>合計価格</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for material in materials %}
+        <tr>
+            <td>{{ material.material.name }}</td>
+            <td>{{ material.quantity_used }}</td>
+            <td>¥{{ material.material.unit_price }}</td>
+            <td>¥{{ material.quantity_used * material.material.unit_price }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ url_for('recipe_list') }}" class="back-link">レシピ一覧に戻る</a>
+{% endblock %}

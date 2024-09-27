@@ -1,0 +1,19 @@
+{% extends "application.html" %}
+{% block content %}
+    <h1>Usage History</h1>
+    <table>
+        <tr>
+            <th>Material</th>
+            <th>Quantity Used</th>
+            <th>Usage Date</th>
+        </tr>
+        {% for usage in usages %}
+        <tr>
+            <td>{{ usage.material.name }}</td>
+            <td>{{ usage.quantity_used }}</td>
+            <td>{{ usage.usage_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('index') }}">Back to Material List</a>
+{% endblock %}
